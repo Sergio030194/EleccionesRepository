@@ -1,0 +1,8 @@
+mysql.datasource.url=${DB_URL}
+mysql.datasource.username=${DB_USERNAME}
+mysql.datasource.password=${DB_PASSWORD}
+mysql.datasource.driver-class-name=${DB_DRIVER}
+
+mysql.jpa.show-sql=false
+mysql.jpa.hibernate.ddl-auto=update
+mysql.jpa.database-platform=${DB_PLATFORM}

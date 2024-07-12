@@ -1,0 +1,11 @@
+package com.elecciones.repo.elecciones;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.elecciones.model.elecciones.Votos;
+
+public interface IVotosRepo extends JpaRepository<Votos, Integer> {
+	
+	public Boolean findByCandidatoAndSeccion(Integer idCandidato,Integer casilla);
+
+}

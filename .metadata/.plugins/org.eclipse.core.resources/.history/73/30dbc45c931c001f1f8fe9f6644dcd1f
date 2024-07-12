@@ -1,0 +1,27 @@
+package com.elecciones.repo.elecciones;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import com.elecciones.model.elecciones.Votos;
+
+@CrossOrigin
+@Repository
+public interface IVotosRepo extends JpaRepository<Votos, Integer> {
+	
+//	public Boolean findByidCandidatoAndCasilla(Integer idCandidato,Integer casilla);
+	
+	@Query(value= "SELECT  * FROM votos WHERE comunidad = ?1 AND seccion = ?2 AND casilla = ?3 AND partido = ?4", nativeQuery =true)
+	public List<String> getValidarRegistro(String comunidad, String seccion, String casilla, String partido);
+	
+	@Query(value= "INSERT INTO votos(comunidad,seccion,casilla,partido,votos)  VALUES(?1,?2,?3,?4,?5)", nativeQuery =true)
+	public void  insetarVoto(String comunidad, String seccion, String casilla, String partido, int votos);
+	
+	@Query(value= "SELECT partido,SUM(votos)AS votos FROM votos GROUP BY partido", nativeQuery =true)
+	public List<String> totalVotosPartido();
+
+}
